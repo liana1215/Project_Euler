@@ -1,7 +1,9 @@
 --Project Euler Problem 4
 --Largest palindrome product
+import Control.Applicative
+
 largestPalindromeProduct        :: Integer -> Integer
-largestPalindromeProduct n      =  foldr (max) 0 [ p | p <- [(x * y) | x <- numbers, y <- numbers], isPalindrome p]
+largestPalindromeProduct n      =  foldr (max) 0 [ p | p <- (*) <$> numbers <*> numbers, isPalindrome p]
                                    where numbers = [n `div` 10 .. n] 
 
 --Checks if integer is a palindrome
